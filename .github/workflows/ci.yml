@@ -18,6 +18,10 @@ jobs:
 
       - name: Test with the Go CLI
         run: go test ./... -cover
+      - name: Install gosec
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+      - name: Test sec vulnerabilities
+        run: gosec ./...
 
       - name: Force Failure
         run: (exit 0)
@@ -27,4 +31,8 @@ jobs:
     steps:
       - name: "Check styling"
         run: test -z $(go fmt ./...)
+      # - name: "Lint with staticcheck"
+      #   uses: dominikh/staticcheck-action@v1.2.0
+      #   with:
+      #    version: "2022.1.1"
 
