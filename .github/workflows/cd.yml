@@ -27,7 +27,7 @@ jobs:
         - name: 'Set up Cloud SDK'
           uses: 'google-github-actions/setup-gcloud@v2'
         - name: 'Migrate db'
-          uses: ./scripts/migrateup.sh
+          run: ./scripts/migrateup.sh
         - name: 'Build & push docker image'
           run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-449615/notely-ar-repo/notely:latest .  
         - name: 'Deploy to Cloud Run'
